@@ -120,7 +120,6 @@
 		?>
 	</div>
 </section>
-</body>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 
@@ -132,4 +131,5 @@
 		$('#synchro').load('./synchro.php #synchro');
 	}, 1000); // refresh every 10000 milliseconds
 </script>
+</body>
 </html>
