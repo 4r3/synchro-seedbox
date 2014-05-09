@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<section class="box widget synchro">
+<section class="box widget synchro">
       	<header class="header">
         	<h2>Synchro</h2>
       	</header>
