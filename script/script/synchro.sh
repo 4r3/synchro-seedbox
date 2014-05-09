@@ -68,10 +68,6 @@ IFS=$old_IFS
 }
 
 
-################################
-# Debut ce qu il faut modifier #
-################################
-
 function envois_fichier
 {
 #	echo "envoie $1"
@@ -79,25 +75,37 @@ function envois_fichier
 	echo "$DIR/$1" > $Log
 
 	# Remplacer par les infos de votre NAS
-	rsync $ARGS "$1" <user>@<adresse_de_votre_nas>:/volumeX/<votre_dossier_de_synchro> >> $Log
+	rsync $ARGS "$1" "user-ssh"@"$IP":"$dest-NAS" >> $Log
 }
 
+################################
+# Debut ce qu il faut modifier #
+################################
 
+# nom d'utilisateur linux
+user="<user>"
 
+# nom d'utilisateur SSH
+user-ssh="<ssh-user>"
 
-list=/home/<user>/synchro/logs/liste_fichiers
+# Adresse du NAS
+IP="adresse du NAS" 
 
-# Dossier des fichiers à transferer
-DIR=/home/<user>/torrents/complete/<votre_dossier>
+# emplacement sur le NAS:
+dest-NAS="/volumeX/<votre_dossier_de_synchro>"
 
 # Modifier --bwlimit=1024 selon vos envies
 ARGS="-aPRL --remove-sent-files --partial-dir=./tmp --temp-dir=./tmp --bwlimit=1024 --rsh=ssh"
 
-Log=/home/<user>/synchro/logs/sending.log
-
 #################################
 # Fin de ce qu il faut modifier #
-################################
+#################################
+
+list=/home/$user/synchro/logs/liste_fichiers
+
+DIR=/home/$user/torrents/complete
+
+Log=/home/$user/synchro/logs/sending.log
 
 if test -f /tmp/synchro
 then
