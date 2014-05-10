@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#début déclaration des fonctions
+
 function parcours_rep
 {
 local rep
@@ -37,7 +39,6 @@ do
 done
 
 rmdir "$rep/"* 2> /dev/null 
-#echo "fin $rep"
 }
 
 function maj_liste
@@ -53,18 +54,20 @@ patern2='/*'
 
 old_IFS=$IFS
 IFS=$'\n'
-for line in $(sort $list)
+while test -f $list
 do
-	IFS=$old_IFS
-	line1=${line##$patern}
-#	echo $line1
-	fic=${line1##"$DIR"}
-#	echo $fic
-	rel="${fic%$patern2}/"
-#	echo $rel
-	envois_fichier "$line1"
+	sort --output=/tmp/liste_temp $list
+	
+	line=$(head -1 /tmp/liste_temp)
+	
+	fichier=${line##$patern}
+	
+	envois_fichier "$fichier"
+	
 	maj_liste
+
 done
+rm /tmp/liste_temp
 IFS=$old_IFS
 }
 
@@ -77,13 +80,18 @@ function envois_fichier
 
 	rsync $ARGS "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
 }
+#fin déclaration des fonctions
+
+
+#début script
 
 . ./config/user.cfg
-
 
 list="/home/$user/synchro/logs/liste_fichiers"
 
 Log="/home/$user/synchro/logs/sending.log"
+
+
 
 if test -f /tmp/synchro
 then
@@ -97,9 +105,8 @@ fi
 cd $DIR
 maj_liste
 
-while test -f $list
-do
+
 envois_fichiers
-done
+
 
 rm /tmp/synchro
