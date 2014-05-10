@@ -13,6 +13,7 @@ body {
   width:500px;
   margin:auto;
 }
+
 .box h2 {
   color: #dd5555;
   font-size: 1em;
@@ -25,33 +26,44 @@ body {
   padding: 10px 0;
 }
 
-
 a {
-	text-decoration:none;
-	font-size:10px;
-	color: #7d7d7d;
-	line-height:5px;
+  text-decoration:none;
+  font-size:10px;
+  color: #7d7d7d;
+  line-height:5px;
 }
 
 .bloc-head {
-	color: #dd5555;
-	font-size: 0.875em;
-    padding-left:0px;
-    padding-top:10px;
+  color: #dd5555;
+  font-size: 0.875em;
+  padding-left:0px;
+  padding-top:10px;
 }
 
 .bloc{
-	margin-left:10px;
-	line-height:15px;
-	padding-bottom:10px;
+  margin-left:10px;
+  line-height:15px;
+  padding-bottom:10px;
 }
 
+#synchro {
+  text-align:center;
+  word-wrap:break-word;
+  font-size:12px;
+  width:450px;
+  margin:auto;
+}
 
+#infosync {
+  font-size:10px;
+  color: #7d7d7d;
+}
+
+/* BARRE DE PROGRESSION */
 /*
 Copyright (c) 2010-2012 Ivan Vanderbyl
 Originally found at http://ivan.ly/ui
 */
-
 
 /* Bar which is placed behind the progress */
 .ui-progress-bar {
@@ -152,7 +164,6 @@ Originally found at http://ivan.ly/ui
 
 }
 
-
 /* INFOBULLE */
 a.info {
    position: relative;
@@ -189,23 +200,8 @@ a.info:hover span {
    
     padding: 0.5em;
     border-radius: 10px;
-	background: rgba(0, 0, 0, .75);
-	box-shadow: 1px 1px 12px #000;
-	border-spacing : 50px;
-	line-height:12px;
+    background: rgba(0, 0, 0, .75);
+    box-shadow: 1px 1px 12px #000;
+    border-spacing : 50px;
+    line-height:12px;
 }	
-
-/* Texte, barre */
-#synchro {
-	text-align:center;
-	word-wrap:break-word;
-	font-size:12px;
-	width:450px;
-	margin:auto;
-
-}
-
-#infosync {
-	font-size:10px;
-	color: #7d7d7d;
-}
