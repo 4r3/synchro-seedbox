@@ -16,7 +16,7 @@ rel="$1/"
 rep="$DIR$rel"
 fi
 
-#echo "dans $rep"
+echo "dans $rep"
 
 for i in "$rep"*
 do
@@ -35,6 +35,7 @@ do
 	fi
 	fi
 done
+
 rmdir "$rep/"* 2> /dev/null 
 #echo "fin $rep"
 }
@@ -74,18 +75,15 @@ function envois_fichier
 
 	echo "$DIR/$1" > $Log
 
-	# Remplacer par les infos de votre NAS
-	rsync $ARGS "$1" "user-ssh"@"$IP":"$dest-NAS" >> $Log
+	rsync $ARGS "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
 }
 
-set -e
-. /home/synchro/script/config/user.sh
+. ./config/user.cfg
 
-list=/home/$user/synchro/logs/liste_fichiers
 
-DIR=/home/$user/torrents/complete
+list="/home/$user/synchro/logs/liste_fichiers"
 
-Log=/home/$user/synchro/logs/sending.log
+Log="/home/$user/synchro/logs/sending.log"
 
 if test -f /tmp/synchro
 then
