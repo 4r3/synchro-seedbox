@@ -4,7 +4,6 @@ echo -n -e "Ce script va vous permettre d'installer une synchronisation entre vo
 echo ""
 echo "Script rsync par 4r3, script d'installation et php par Jedediah, gros merci à ex_rat et à la communauté mondedie.fr !"
 echo ""
-echo ""
 
 echo -n -e "Entrer votre nom d'utilisateur : "
 read user
@@ -48,3 +47,8 @@ echo "#* * * * * cd /home/$user/script/synchro && ./synchro.sh > /dev/null" >> m
 #install new cron file
 crontab mycron
 rm mycron
+
+rm -R /tmp/synchro-seedbox
+
+echo ""
+echo "Merci, vous pouvez maintenant suivre la suite du tutoriel."
