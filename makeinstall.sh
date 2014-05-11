@@ -1,33 +1,43 @@
 #!/bin/bash
 
-echo -n -e "Ce script va vous permettre d'installer une synchronisation entre votre serveur dédié et votre seedbox."
+echo -e "Ce script va vous permettre d'installer une synchronisation entre votre serveur dédié et votre seedbox."
 echo ""
 echo "Script rsync par 4r3, script d'installation et php par Jedediah, gros merci à ex_rat et à la communauté mondedie.fr !"
 echo ""
 
-echo -n -e "Entrer votre nom d'utilisateur : "
+echo -e "Entrer votre nom d'utilisateur : "
+echo ""
 read user
 
-echo -n -e "Entrer le dossier à surveiller sur le serveur (/home/votre_user/torrents/complete/votre_dossier : "
+echo -e "Entrer le dossier à surveiller sur le serveur (/home/votre_user/torrents/complete/votre_dossier) : "
+echo ""
 read folder
 
-echo -n -e "Entrer l'utilisateur SSD du NAS : "
+echo -e "Entrer l'utilisateur SSD du NAS : "
+echo ""
 read nasuser
 
-echo -n -e "Entrer l'adresse de votre NAS : "
+echo -e "Entrer l'adresse de votre NAS : "
+echo ""
 read nasaddr
 
-echo -n -e "Entrer le dossier de synchro sur le NAS (/volumeX/votre_dossier sur un NAS Synology : "
+echo -e "Entrer le dossier de synchro sur le NAS (/volumeX/votre_dossier sur un NAS Synology) : "
+echo ""
 read nasfolder
 
-echo -n -e "Entrer la vitesse de synchronisation souhaitée : "
+echo -e "Entrer la vitesse de synchronisation souhaitée : "
+echo ""
 read speed
+
+echo -e "Entrer le répertoire d'installation de la page web (/var/www) :"
+echo ""
+read folderweb
 
 mkdir /home/$user/synchro
 cp -R script/* /home/$user/synchro
 
-mkdir /var/www/synchro
-cp -R web/* /var/www/synchro
+mkdir $folderweb
+cp -R web/* $folderweb
 
 sed -i "s/@user@/$user/g;" /home/$user/synchro/config/user.cfg
 sed -i 's#@folder@#'$folder'#' /home/$user/synchro/config/user.cfg
