@@ -6,32 +6,32 @@ echo "Script rsync par 4r3, script d'installation et php par Jedediah, gros merc
 echo ""
 
 echo -e "Entrer votre nom d'utilisateur : "
-echo ""
 read user
+echo ""
 
 echo -e "Entrer le dossier à surveiller sur le serveur (/home/votre_user/torrents/complete/votre_dossier) : "
-echo ""
 read folder
+echo ""
 
 echo -e "Entrer l'utilisateur SSD du NAS : "
-echo ""
 read nasuser
+echo ""
 
 echo -e "Entrer l'adresse de votre NAS : "
-echo ""
 read nasaddr
+echo ""
 
 echo -e "Entrer le dossier de synchro sur le NAS (/volumeX/votre_dossier sur un NAS Synology) : "
-echo ""
 read nasfolder
+echo ""
 
 echo -e "Entrer la vitesse de synchronisation souhaitée : "
-echo ""
 read speed
+echo ""
 
 echo -e "Entrer le répertoire d'installation de la page web (/var/www) :"
-echo ""
 read folderweb
+echo ""
 
 mkdir /home/$user/synchro
 cp -R script/* /home/$user/synchro
@@ -46,7 +46,7 @@ sed -i "s/@nasaddr@/$nasaddr/g;" /home/$user/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$nasfolder'#' /home/$user/synchro/config/user.cfg
 sed -i "s/@speed@/$speed/g;" /home/$user/synchro/config/user.cfg
 
-sed -i "s/@user@/$user/g;" /var/www/synchro/synchro.php
+sed -i "s/@user@/$user/g;" $folderweb
 
 chmod +x /home/$user/synchro/synchro.sh
 
