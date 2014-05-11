@@ -53,7 +53,7 @@ chmod +x /home/$user/synchro/synchro.sh
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "#* * * * * cd /home/$user/script/synchro && ./synchro.sh > /dev/null" >> mycron
+echo "#* * * * * cd /home/$user/synchro && ./synchro.sh > /dev/null" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
