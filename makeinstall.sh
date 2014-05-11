@@ -46,7 +46,7 @@ sed -i "s/@nasaddr@/$nasaddr/g;" /home/$user/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$nasfolder'#' /home/$user/synchro/config/user.cfg
 sed -i "s/@speed@/$speed/g;" /home/$user/synchro/config/user.cfg
 
-sed -i "s/@user@/$user/g;" $folderweb
+sed -i "s/@user@/$user/g;" $folderweb/synchro.php
 
 chmod +x /home/$user/synchro/synchro.sh
 
