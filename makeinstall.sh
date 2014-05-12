@@ -2,7 +2,7 @@
 
 echo -e "Ce script va vous permettre d'installer une synchronisation\nentre votre serveur dédié et votre seedbox."
 echo ""
-echo -e "Script rsync par 4r3, script d'installation et php par Jedediah.\n Gros merci à ex_rat et à la communauté mondedie.fr !"
+echo -e "Script rsync par 4r3, script d'installation et php par Jedediah.\nGros merci à ex_rat et à la communauté mondedie.fr !"
 echo ""
 
 #Récupération des informations utilisateur
