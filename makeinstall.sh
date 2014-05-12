@@ -1,63 +1,68 @@
 #!/bin/bash
 
-echo -e "Ce script va vous permettre d'installer une synchronisation entre votre serveur dédié et votre seedbox."
+echo -e "Ce script va vous permettre d'installer une synchronisation\n entre votre serveur dédié et votre seedbox."
 echo ""
-echo "Script rsync par 4r3, script d'installation et php par Jedediah, gros merci à ex_rat et à la communauté mondedie.fr !"
-echo ""
-
-echo -e "Entrer votre nom d'utilisateur : "
-read user
+echo "Script rsync par 4r3, script d'installation et php par Jedediah\n, gros merci à ex_rat et à la communauté mondedie.fr !"
 echo ""
 
-echo -e "Entrer le dossier à surveiller sur le serveur (/home/votre_user/torrents/complete/votre_dossier) : "
-read folder
+#Récupération des informations utilisateur
+echo -e "Entrer votre nom d'utilisateur :"
+read USER
 echo ""
 
-echo -e "Entrer l'utilisateur SSD du NAS : "
-read nasuser
+echo -e "Entrer le dossier à surveiller sur le serveur :"
+read FOLDER
 echo ""
 
-echo -e "Entrer l'adresse de votre NAS : "
-read nasaddr
+echo -e "Entrer l'utilisateur SSD du NAS :"
+read NASUSER
 echo ""
 
-echo -e "Entrer le dossier de synchro sur le NAS (/volumeX/votre_dossier sur un NAS Synology) : "
-read nasfolder
+echo -e "Entrer l'adresse de votre NAS :"
+read NASADDR
 echo ""
 
-echo -e "Entrer la vitesse de synchronisation souhaitée : "
-read speed
+echo -e "Entrer le dossier de synchro sur le NAS :"
+read NASFOLDER
+echo ""
+
+echo -e "Entrer la vitesse de synchronisation souhaitée :"
+read SPEED
 echo ""
 
 echo -e "Entrer le répertoire d'installation de la page web (/var/www) :"
-read folderweb
+read FOLDERWEB
 echo ""
 
-mkdir /home/$user/synchro
-cp -R script/* /home/$user/synchro
+#Création de l'arborescence du script
+mkdir /home/$USER/synchro
+cp -R script/* /home/$USER/synchro
 
-mkdir $folderweb
-cp -R web/* $folderweb
+#Création de l'arborescence de la page web
+mkdir $FOLDERWEB
+cp -R web/* $FOLDERWEB
 
-sed -i "s/@user@/$user/g;" /home/$user/synchro/config/user.cfg
-sed -i 's#@folder@#'$folder'#' /home/$user/synchro/config/user.cfg
-sed -i "s/@nasuser@/$nasuser/g;" /home/$user/synchro/config/user.cfg
-sed -i "s/@nasaddr@/$nasaddr/g;" /home/$user/synchro/config/user.cfg
-sed -i 's#@nasfolder@#'$nasfolder'#' /home/$user/synchro/config/user.cfg
-sed -i "s/@speed@/$speed/g;" /home/$user/synchro/config/user.cfg
+#Ecriture des variables dans le fichier de configuration
+sed -i "s/@user@/$USER/g;" /home/$USER/synchro/config/user.cfg
+sed -i 's#@folder@#'$FOLDER'#' /home/$USER/synchro/config/user.cfg
+sed -i "s/@nasuser@/$NASUSER/g;" /home/$USER/synchro/config/user.cfg
+sed -i "s/@nasaddr@/$NASADDR/g;" /home/$USER/synchro/config/user.cfg
+sed -i 's#@nasfolder@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
+sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
 
-sed -i "s/@user@/$user/g;" $folderweb/synchro.php
+sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
 
-chmod +x /home/$user/synchro/synchro.sh
+chmod +x /home/$USER/synchro/synchro.sh
 
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "* * * * * cd /home/$user/synchro && ./synchro.sh > /dev/null" >> mycron
+echo "* * * * * cd /home/$USER/synchro && ./synchro.sh > /dev/null" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
 
+#Suppression des fichiers d'installation
 rm -R /tmp/synchro-seedbox
 
 echo "Merci, vous pouvez maintenant suivre la suite du tutoriel."
