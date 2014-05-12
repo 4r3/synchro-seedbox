@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo -e "Ce script va vous permettre d'installer une synchronisation\n entre votre serveur dédié et votre seedbox."
+echo -e "Ce script va vous permettre d'installer une synchronisation\nentre votre serveur dédié et votre seedbox."
 echo ""
-echo "Script rsync par 4r3, script d'installation et php par Jedediah\n. Gros merci à ex_rat et à la communauté mondedie.fr !"
+echo "Script rsync par 4r3, script d'installation et php par Jedediah.\n Gros merci à ex_rat et à la communauté mondedie.fr !"
 echo ""
 
 #Récupération des informations utilisateur
@@ -10,7 +10,7 @@ echo -e "Entrer votre nom d'utilisateur :"
 read USER
 echo ""
 
-echo -e "Entrer le dossier à surveiller sur le serveur :"
+echo -e "Entrer le dossier à surveiller sur le serveur :\n(/home/user/torrents/complete/dossier) : "
 read FOLDER
 echo ""
 
@@ -22,7 +22,7 @@ echo -e "Entrer l'adresse de votre NAS :"
 read NASADDR
 echo ""
 
-echo -e "Entrer le dossier de synchro sur le NAS :"
+echo -e "Entrer le dossier de synchro sur le NAS :\n(/volumeX/dossier sur NAS Synology) : "
 read NASFOLDER
 echo ""
 
@@ -30,7 +30,7 @@ echo -e "Entrer la vitesse de synchronisation souhaitée :"
 read SPEED
 echo ""
 
-echo -e "Entrer le répertoire d'installation de la page web (/var/www) :"
+echo -e "Entrer le répertoire d'installation de la page web :\n(/var/www) : "
 read FOLDERWEB
 echo ""
 
