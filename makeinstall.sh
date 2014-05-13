@@ -1,36 +1,81 @@
 #!/bin/bash
+#
+# Synchro-Seedbox
+# Auteur: Script rsync par 4r3, script d'installation et php par Jedediah
+#
+# Installation :
+# cd /tmp
+# git clone https://github.com/4r3/synchro-seedbox
+# cd synchro-seedbox
+# chmod +x makeinstall.sh
+#./makeinstall.sh
+#
 
-echo -e "Ce script va vous permettre d'installer une synchronisation\nentre votre serveur dédié et votre seedbox."
+# variables couleurs
+CSI="\033["
+CEND="${CSI}0m"
+CRED="${CSI}1;31m"
+CGREEN="${CSI}1;32m"
+CYELLOW="${CSI}1;33m"
+CBLUE="${CSI}1;34m"
+
+clear
+
+# contrôle droits utilisateur
+if [ $(id -u) -ne 0 ]
+	then
+		echo ""
+		echo -e "${CRED}Ce script doit être exécuté en root.$CEND" 1>&2
+		echo ""
+		exit 1
+	fi
+
+# logo
 echo ""
-echo -e "Script rsync par 4r3, script d'installation et php par Jedediah.\nGros merci à ex_rat et à la communauté mondedie.fr !"
+echo -e "${CBLUE}                                Synchro-Seedbox$CEND"
+echo ""
+echo -e "${CBLUE}
+                                      |          |_)         _|     
+            __ \`__ \   _ \  __ \   _\` |  _ \  _\` | |  _ \   |    __|
+            |   |   | (   | |   | (   |  __/ (   | |  __/   __| |   
+           _|  _|  _|\___/ _|  _|\__,_|\___|\__,_|_|\___|_)_|  _|   
+
+$CEND"
+echo ""
+echo -e "${CYELLOW}          Ce script va vous permettre d'installer une synchronisation$CEND"
+echo -e "${CYELLOW}            automatique entre votre serveur dédié et votre seedbox.$CEND"
+echo ""
+echo -e "${CBLUE}        Script rsync par 4r3, script d'installation et php par Jedediah.$CEND"
+echo -e "${CBLUE}              Gros merci à ex_rat et à la communauté mondedie.fr !$CEND"
 echo ""
 
 #Récupération des informations utilisateur
-echo -e "Entrer votre nom d'utilisateur :"
+echo ""
+echo -e "${CGREEN}Entrer votre nom d'utilisateur:$CEND"
 read USER
 echo ""
 
-echo -e "Entrer le dossier à surveiller sur le serveur\n(/home/user/torrents/complete/dossier) : "
+echo -e "${CGREEN}Entrer le dossier à surveiller sur le serveur\n(/home/user/torrents/complete/dossier):$CEND"
 read FOLDER
 echo ""
 
-echo -e "Entrer l'utilisateur SSD du NAS :"
+echo -e "${CGREEN}Entrer l'utilisateur SSD du NAS:$CEND"
 read NASUSER
 echo ""
 
-echo -e "Entrer l'adresse de votre NAS :"
+echo -e "${CGREEN}Entrer l'adresse de votre NAS:$CEND"
 read NASADDR
 echo ""
 
-echo -e "Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur NAS Synology) : "
+echo -e "${CGREEN}Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur NAS Synology):$CEND"
 read NASFOLDER
 echo ""
 
-echo -e "Entrer la vitesse de synchronisation souhaitée :"
+echo -e "${CGREEN}Entrer la vitesse de synchronisation souhaitée:$CEND"
 read SPEED
 echo ""
 
-echo -e "Entrer le répertoire d'installation de la page web\n(/var/www) : "
+echo -e "${CGREEN}Entrer le répertoire d'installation de la page web\n(/var/www):$CEND"
 read FOLDERWEB
 echo ""
 
@@ -65,4 +110,5 @@ rm mycron
 #Suppression des fichiers d'installation
 rm -R /tmp/synchro-seedbox
 
-echo "Merci, vous pouvez maintenant suivre la suite du tutoriel."
+echo "${CBLUE}Merci, vous pouvez maintenant suivre la suite du tutoriel.$CEND"
+echo ""
