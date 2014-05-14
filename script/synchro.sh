@@ -49,27 +49,29 @@ function maj_liste
 
 function envois_fichiers
 {
-patern='*[0-9]:'
-patern2='/*'
-
-old_IFS=$IFS
-IFS=$'\n'
-while test -f $list
-do
-	sort --output=/tmp/liste_temp $list
+	patern='*[0-9]:'
+	patern2='/*'
 	
-	line=$(head -1 /tmp/liste_temp)
+	old_IFS=$IFS
+	IFS=$'\n'
+	while test -f $list
+	do
+		sort --output=/tmp/liste_temp $list
+		
+		line=$(head -1 /tmp/liste_temp)
+		
+		fichier=${line##$patern}
+		
+		setspeed
+		
+		envois_fichier "$fichier"
+		
+		maj_liste
 	
-	fichier=${line##$patern}
-	
-	envois_fichier "$fichier"
-	
-	maj_liste
-
-done
-rm /tmp/liste_temp
-IFS=$old_IFS
-}
+	done
+	rm /tmp/liste_temp
+	IFS=$old_IFS
+	}
 
 
 function envois_fichier
@@ -78,7 +80,21 @@ function envois_fichier
 
 	echo "$DIR/$1" > $Log
 
-	rsync $ARGS "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
+	rsync $ARGS $BWL "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
+}
+
+function setspeed
+{
+	. ./config/speed.cfg
+	
+	speed=$
+	
+	if test speed -lt 1
+	then
+		BWL=""
+	else
+		BWL="--bwlimit=$speed"
+	fi
 }
 #fin déclaration des fonctions
 
