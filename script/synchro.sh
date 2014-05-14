@@ -87,7 +87,7 @@ function setspeed
 {
 	. ./config/speed.cfg
 	
-	speed=$
+	speed=$speed1
 	
 	if test speed -lt 1
 	then
