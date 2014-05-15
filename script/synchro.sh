@@ -88,9 +88,9 @@ function envois_fichier
 function setspeed
 {
 	echo "42"
-	if test -f /home/$user/synchro/config/speed.cfg
+	if test -f $conf_speed
 	then
-		. /home/$user/synchro/config/speed.cfg
+		. $conf_speed
 
 		speed=$speed1
 
