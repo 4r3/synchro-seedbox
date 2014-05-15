@@ -71,10 +71,6 @@ echo -e "${CGREEN}Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur
 read NASFOLDER
 echo ""
 
-echo -e "${CGREEN}Entrer la vitesse de synchronisation souhaitée:$CEND"
-read SPEED
-echo ""
-
 echo -e "${CGREEN}Entrer le répertoire d'installation de la page web\n(/var/www):$CEND"
 read FOLDERWEB
 echo ""
@@ -94,10 +90,12 @@ sed -i "s/@nasuser@/$NASUSER/g;" /home/$USER/synchro/config/user.cfg
 sed -i "s/@nasaddr@/$NASADDR/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
+sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
 
 sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
 
 chmod +x /home/$USER/synchro/synchro.sh
+
 
 #write out current crontab
 crontab -l > mycron
