@@ -28,7 +28,7 @@ foreach($lines as $line_num => $line) {
 			$file='/tmp/synchro'; // On vérifie que le script est lancé
 			
 			// Remplacer <user> par votre utilisateur linux
-			$log='/home/admin/synchro/logs/sending.log';
+			$log='/home/@user@/synchro/logs/sending.log';
 
 			if(file_exists($file))
 			{
@@ -100,7 +100,7 @@ foreach($lines as $line_num => $line) {
 				$file='/tmp/synchro';  // On vérifie que le script est bien lancé
 				
 				// Remplacer <user> par votre utilisateur linux
-				$list='/home/admin/synchro/logs/liste_fichiers';
+				$list='/home/@user@/synchro/logs/liste_fichiers';
 				
 				// On affiche la liste des fichiers dans l'infobulle
 				if(file_exists($file))
