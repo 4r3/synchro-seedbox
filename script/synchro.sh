@@ -51,27 +51,29 @@ function envois_fichiers
 {
 	patern='*[0-9]:'
 	patern2='/*'
-	
-	old_IFS=$IFS
-	IFS=$'\n'
+
+
+
 	while test -f $list
 	do
+
 		sort --output=/tmp/liste_temp $list
-		
+
 		line=$(head -1 /tmp/liste_temp)
-		
+
+#		echo $line
+
 		fichier=${line##$patern}
-		
+
 		setspeed
-		
+
 		envois_fichier "$fichier"
-		
+
 		maj_liste
-	
+
 	done
 	rm /tmp/liste_temp
-	IFS=$old_IFS
-	}
+}
 
 
 function envois_fichier
@@ -85,15 +87,23 @@ function envois_fichier
 
 function setspeed
 {
-	. ./config/speed.cfg
-	
-	speed=$speed1
-	
-	if test speed -lt 1
+	echo "42"
+	if test -f /home/$user/synchro/config/speed.cfg
 	then
-		BWL=""
+		. /home/$user/synchro/config/speed.cfg
+
+		speed=$speed1
+
+		echo $speed
+
+		if test speed -lt 1
+		then
+			BWL=" "
+		else
+			BWL="--bwlimit=$speed"
+		fi
 	else
-		BWL="--bwlimit=$speed"
+		BWL=" "
 	fi
 }
 #fin déclaration des fonctions
