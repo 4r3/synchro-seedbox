@@ -152,14 +152,13 @@ foreach($lines as $line_num => $line) {
 <form action = "synchro.php" method="post">
 Vitesse : <input type = "number" name = "speed11" value="256" style="width:50px"><br />
 
-<!-- PO active <input value="checked" type="checkbox" onclick="Change()" name="por" id="choix_1" />
+PO active <input value="checked" type="checkbox" onclick="Change()" name="por" id="choix_1" />
 
 <div id="madiv"  style="visibility:hidden;">
 Vitesse PO : <input type = "number" name = "speed2" value="512" style="width:0px">
 Début : <input type="time" name="hor1" value="00:00" />
 Fin : <input type="time" name="hor2" value="06:00" />
-</div> -->
-
+</div>
 
 <input type = "submit" value = "Valider"><br>
 <br>
