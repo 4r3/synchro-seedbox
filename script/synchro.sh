@@ -87,14 +87,35 @@ function envois_fichier
 
 function setspeed
 {
-	echo "42"
 	if test -f $conf_speed
 	then
 		. $conf_speed
 
-		speed=$speed1
+		h=$(date +%s)
+		h1=$(date -d "$sp2time1" +%s)
+		h2=$(date -d "$sp2time2" +%s)
 
-		echo $speed
+		if test $sp2ena -eq 1
+		then
+			if [ $h1 -gt $h2 ]
+			then
+				if [ $h -lt $h2 ] || [ $h -gt $h1 ]
+				then
+					speed=$speed2
+				else
+					speed=$speed1
+				fi
+			else
+				if [ $h -lt $h2 ] && [ $h -gt $h1 ]
+				then
+					speed=$speed2
+				else
+					speed=$speed1
+				fi
+			fi
+		else
+			speed=$speed1
+		fi
 
 		if test speed -lt 1
 		then
