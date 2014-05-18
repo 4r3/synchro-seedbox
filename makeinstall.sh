@@ -95,6 +95,7 @@ sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
 
 touch $FOLDERWEB/speed.cfg
+chown www-data $FOLDERWEB/speed.cfg
 
 chmod +x /home/$USER/synchro/synchro.sh
 
