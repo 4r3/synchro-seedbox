@@ -219,7 +219,7 @@ fclose($monfichier);
 	var auto_refresh = setInterval(
 	function ()
 	{
-		$('#synchro').load('./synhro.php #synchro');
+		$('#synchro').load('./synchro.php #synchro');
 	}, 1000); // refresh every 10000 milliseconds
 </script>
 
