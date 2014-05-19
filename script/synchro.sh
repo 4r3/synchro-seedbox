@@ -72,7 +72,7 @@ function envois_fichiers
 		maj_liste
 
 	done
-	rm /tmp/liste_temp
+	rm /tmp/liste_temp 2> /dev/null
 }
 
 
@@ -117,7 +117,7 @@ function setspeed
 			speed=$speed1
 		fi
 
-		if test speed -lt 1
+		if test speed -lt 1 2> /dev/null
 		then
 			BWL=" "
 		else
