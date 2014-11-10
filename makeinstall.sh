@@ -97,8 +97,6 @@ sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
 sed -i 's#@port@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
 
-@port@
-
 sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
 
 touch $FOLDERWEB/speed.cfg
