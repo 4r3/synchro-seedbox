@@ -59,12 +59,16 @@ echo -e "${CGREEN}Entrer le dossier à surveiller sur le serveur\n(/home/user/to
 read FOLDER
 echo ""
 
-echo -e "${CGREEN}Entrer l'utilisateur SSD du NAS:$CEND"
+echo -e "${CGREEN}Entrer l'utilisateur SSH du NAS:$CEND"
 read NASUSER
 echo ""
 
 echo -e "${CGREEN}Entrer l'adresse de votre NAS:$CEND"
 read NASADDR
+echo ""
+
+echo -e "${CGREEN}Entrer le port SSH du NAS (si vous ne savez pas, tapez 22):$CEND"
+read NASPORT
 echo ""
 
 echo -e "${CGREEN}Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur NAS Synology):$CEND"
@@ -91,6 +95,9 @@ sed -i "s/@nasaddr@/$NASADDR/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
+sed -i 's#@port@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
+
+@port@
 
 sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
 
