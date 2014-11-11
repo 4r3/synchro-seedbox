@@ -75,7 +75,7 @@ function envois_fichier
 
 	echo "$DIR/$1" > $Log
 
-	rsync $ARGS "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
+	rsync -aPRL -e "ssh -p @port@" $ARGS "$1" "$user_SSH"@"$IP":"$dest_NAS" >> $Log
 }
 
 . ./config/user.cfg
