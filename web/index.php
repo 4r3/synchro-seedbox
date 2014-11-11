@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Synchronisation</title>
-<link rel=stylesheet type="text/css" href="./style-synchro.css">
+<link rel=stylesheet type="text/css" href="./style.css">
 </head>
 
 <body>
