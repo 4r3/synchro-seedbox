@@ -127,14 +127,14 @@
 	</div>
 </section>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 
 <!-- Actualisation de la synchro toutes les secondes -->
 <script type="text/javascript">
 	var auto_refresh = setInterval(
 	function ()
 	{
-		$('#synchro').load('./synchro.php #synchro');
+		$('#synchro').load('./index.php #synchro');
 	}, 1000); // refresh every 10000 milliseconds
 </script>
 </body>
