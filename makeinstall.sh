@@ -75,6 +75,10 @@ echo -e "${CGREEN}Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur
 read NASFOLDER
 echo ""
 
+echo -e "${CGREEN}Entrer la vitesse de la synchro:$CEND"
+read SPEED
+echo ""
+
 echo -e "${CGREEN}Entrer le nom d'utilisateur pour la page web:$CEND"
 read USERWEB
 echo ""
