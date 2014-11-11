@@ -59,7 +59,7 @@ echo -e "${CGREEN}Entrer le dossier à surveiller sur le serveur\n(/home/user/to
 read FOLDER
 echo ""
 
-echo -e "${CGREEN}Entrer l'utilisateur SSD du NAS:$CEND"
+echo -e "${CGREEN}Entrer l'utilisateur SSH du NAS:$CEND"
 read NASUSER
 echo ""
 
@@ -67,16 +67,20 @@ echo -e "${CGREEN}Entrer l'adresse de votre NAS:$CEND"
 read NASADDR
 echo ""
 
+echo -e "${CGREEN}Entrer le port SSH du NAS (si vous ne savez pas, tapez 22):$CEND"
+read NASPORT
+echo ""
+
 echo -e "${CGREEN}Entrer le dossier de synchro sur le NAS\n(/volumeX/dossier sur NAS Synology):$CEND"
 read NASFOLDER
 echo ""
 
-echo -e "${CGREEN}Entrer la vitesse de synchronisation souhaitée:$CEND"
-read SPEED
+echo -e "${CGREEN}Entrer le nom d'utilisateur pour la page web:$CEND"
+read USERWEB
 echo ""
 
-echo -e "${CGREEN}Entrer le répertoire d'installation de la page web\n(/var/www):$CEND"
-read FOLDERWEB
+echo -e "${CGREEN}Entrer le mot de passe pour la page web:$CEND"
+read PASSWEB
 echo ""
 
 #Création de l'arborescence du script
@@ -84,8 +88,15 @@ mkdir /home/$USER/synchro
 cp -R script/* /home/$USER/synchro
 
 #Création de l'arborescence de la page web
-mkdir $FOLDERWEB
-cp -R web/* $FOLDERWEB
+mkdir /var/www/syncnas
+cp -R web/* /var/www/syncnas
+chown -R www-data /var/www/syncnas
+
+#Création du vhost nginx
+cp ./syncnas.conf /etc/nginx/sites-enabled
+
+#Génération du .htpasswd
+htpasswd -cb /etc/nginx/passwd/syncnas_passwd $USERWEB $PASSWEB
 
 #Ecriture des variables dans le fichier de configuration
 sed -i "s/@user@/$USER/g;" /home/$USER/synchro/config/user.cfg
@@ -93,16 +104,18 @@ sed -i 's#@folder@#'$FOLDER'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@nasuser@/$NASUSER/g;" /home/$USER/synchro/config/user.cfg
 sed -i "s/@nasaddr@/$NASADDR/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
+sed -i 's#@port@#'$NASPORT'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
+#sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
 
-sed -i "s/@user@/$USER/g;" $FOLDERWEB/synchro.php
+sed -i "s/@user@/$USER/g;" /var/www/syncnas/index.php
 
 chmod +x /home/$USER/synchro/synchro.sh
 
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "* * * * * cd /home/$USER/synchro && ./synchro.sh > /dev/null" >> mycron
+#echo "* * * * * cd /home/$USER/synchro && ./synchro.sh > /dev/null" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
