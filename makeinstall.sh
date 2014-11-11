@@ -94,7 +94,7 @@ sed -i 's#@folder@#'$FOLDER'#' /home/$USER/synchro/config/user.cfg
 sed -i "s/@nasuser@/$NASUSER/g;" /home/$USER/synchro/config/user.cfg
 sed -i "s/@nasaddr@/$NASADDR/g;" /home/$USER/synchro/config/user.cfg
 sed -i 's#@nasfolder@#'$NASFOLDER'#' /home/$USER/synchro/config/user.cfg
-sed -i 's#@port@#'$NASPORT'#' /home/$USER/synchro/config/user.cfg
+sed -i 's#@port@#'$NASPORT'#' /home/$USER/synchro/synchro.sh
 sed -i "s/@speed@/$SPEED/g;" /home/$USER/synchro/config/user.cfg
 #sed -i 's#@folderweb@#'$FOLDERWEB'#' /home/$USER/synchro/config/user.cfg
 
