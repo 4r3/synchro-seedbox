@@ -79,14 +79,6 @@ echo -e "${CGREEN}Entrer la vitesse de la synchro:$CEND"
 read SPEED
 echo ""
 
-echo -e "${CGREEN}Entrer le nom d'utilisateur pour la page web:$CEND"
-read USERWEB
-echo ""
-
-echo -e "${CGREEN}Entrer le mot de passe pour la page web:$CEND"
-read PASSWEB
-echo ""
-
 #Création de l'arborescence du script
 mkdir /home/$USER/synchro
 cp -R script/* /home/$USER/synchro
@@ -95,12 +87,6 @@ cp -R script/* /home/$USER/synchro
 mkdir /var/www/syncnas
 cp -R web/* /var/www/syncnas
 chown -R www-data /var/www/syncnas
-
-#Création du vhost nginx
-cp ./syncnas.conf /etc/nginx/sites-enabled
-
-#Génération du .htpasswd
-htpasswd -cb /etc/nginx/passwd/syncnas_passwd $USERWEB $PASSWEB
 
 #Ecriture des variables dans le fichier de configuration
 sed -i "s/@user@/$USER/g;" /home/$USER/synchro/config/user.cfg
@@ -119,7 +105,7 @@ chmod +x /home/$USER/synchro/synchro.sh
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-#echo "* * * * * cd /home/$USER/synchro && ./synchro.sh > /dev/null" >> mycron
+echo "* * * * * cd /home/$USER/synchro && ./synchro.sh > /dev/null" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
@@ -127,5 +113,6 @@ rm mycron
 #Suppression des fichiers d'installation
 rm -R /tmp/synchro-seedbox
 
+echo ""
 echo "${CBLUE}Merci, vous pouvez maintenant suivre la suite du tutoriel.$CEND"
 echo ""
