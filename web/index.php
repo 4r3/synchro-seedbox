@@ -31,7 +31,7 @@
 				while(!feof($fp))
 				{
 					$line2=$line;
-					$line=fgets($fp,44);
+					$line=fgets($fp,47);
 				}
 				fclose($fp);
 
